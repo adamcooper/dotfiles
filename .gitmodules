@@ -1,27 +1,27 @@
 [submodule "oh-my-zsh"]
-	path = oh-my-zsh
-	url = https://github.com/robbyrussell/oh-my-zsh.git
+  path = oh-my-zsh
+  url = https://github.com/robbyrussell/oh-my-zsh.git
 [submodule "vim/bundle/core/pathogen"]
-	path = vim/bundle/core/pathogen
-	url = git://github.com/tpope/vim-pathogen.git
+  path = vim/bundle/core/pathogen
+  url = git://github.com/tpope/vim-pathogen.git
 [submodule "vim/bundle/colors/solarized"]
-	path = vim/bundle/colors/solarized
-	url = git://github.com/altercation/vim-colors-solarized.git
+  path = vim/bundle/colors/solarized
+  url = git://github.com/altercation/vim-colors-solarized.git
 [submodule "vim/bundle/tools/fugitive"]
-	path = vim/bundle/tools/fugitive
-	url = git://github.com/tpope/vim-fugitive.git
+  path = vim/bundle/tools/fugitive
+  url = git://github.com/tpope/vim-fugitive.git
 [submodule "vim/bundle/tools/ctrlp"]
-	path = vim/bundle/tools/ctrlp
-	url = git://github.com/kien/ctrlp.vim.git
+  path = vim/bundle/tools/ctrlp
+  url = git://github.com/kien/ctrlp.vim.git
 [submodule "vim/bundle/tools/pasta"]
-	path = vim/bundle/tools/pasta
-	url = git://github.com/sickill/vim-pasta.git
-[submodule "vim/bundle/nerdtree"]
-	path = vim/bundle/nerdtree
-	url = git://github.com/scrooloose/nerdtree.git
-[submodule "vim/bundle/surround"]
-	path = vim/bundle/surround
-	url = git://github.com/tpope/vim-surround.git
-[submodule "vim/bundle/bufexplorer"]
-	path = vim/bundle/bufexplorer
-	url = git://github.com/corntrace/bufexplorer.git
+  path = vim/bundle/tools/pasta
+  url = git://github.com/sickill/vim-pasta.git
+[submodule "vim/bundle/tools/nerdtree"]
+  path = vim/bundle/tools/nerdtree
+  url = git://github.com/scrooloose/nerdtree.git
+[submodule "vim/bundle/tools/surround"]
+  path = vim/bundle/tools/surround
+  url = git://github.com/tpope/vim-surround.git
+[submodule "vim/bundle/tools/bufexplorer"]
+  path = vim/bundle/tools/bufexplorer
+  url = git://github.com/corntrace/bufexplorer.git
