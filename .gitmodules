@@ -25,3 +25,69 @@
 [submodule "vim/bundle/tools/bufexplorer"]
   path = vim/bundle/tools/bufexplorer
   url = git://github.com/corntrace/bufexplorer.git
+[submodule "vim/bundle/tools/commentary"]
+	path = vim/bundle/tools/commentary
+	url = git://github.com/tpope/vim-commentary.git
+[submodule "vim/bundle/tools/repeat"]
+	path = vim/bundle/tools/repeat
+	url = git://github.com/tpope/vim-repeat.git
+[submodule "vim/bundle/tools/ack"]
+	path = vim/bundle/tools/ack
+	url = git://github.com/mileszs/ack.vim.git
+[submodule "vim/bundle/tools/gist"]
+	path = vim/bundle/tools/gist
+	url = git://github.com/mattn/gist-vim.git
+[submodule "vim/bundle/tools/supertab"]
+	path = vim/bundle/tools/supertab
+	url = git://github.com/ervandew/supertab.git
+[submodule "vim/bundle/tools/easymotion"]
+	path = vim/bundle/tools/easymotion
+	url = git://github.com/Lokaltog/vim-easymotion.git
+[submodule "vim/bundle/tools/tagbar"]
+	path = vim/bundle/tools/tagbar
+	url = git://github.com/majutsushi/tagbar.git
+[submodule "vim/bundle/tools/powerline"]
+	path = vim/bundle/tools/powerline
+	url = git://github.com/Lokaltog/vim-powerline.git
+[submodule "vim/bundle/tools/yankring"]
+	path = vim/bundle/tools/yankring
+	url = git://github.com/vim-scripts/YankRing.vim.git
+[submodule "vim/bundle/langs/git"]
+	path = vim/bundle/langs/git
+	url = git://github.com/tpope/vim-git.git
+[submodule "vim/bundle/langs/ruby"]
+	path = vim/bundle/langs/ruby
+	url = git://github.com/vim-ruby/vim-ruby.git
+[submodule "vim/bundle/langs/rails"]
+	path = vim/bundle/langs/rails
+	url = git://github.com/tpope/vim-rails.git
+[submodule "vim/bundle/langs/haml"]
+	path = vim/bundle/langs/haml
+	url = git://github.com/tpope/vim-haml.git
+[submodule "vim/bundle/langs/rspec"]
+	path = vim/bundle/langs/rspec
+	url = git://github.com/skwp/vim-rspec.git
+[submodule "vim/bundle/langs/scss"]
+	path = vim/bundle/langs/scss
+	url = git://github.com/cakebaker/scss-syntax.vim.git
+[submodule "vim/bundle/langs/markdown"]
+	path = vim/bundle/langs/markdown
+	url = git://github.com/tpope/vim-markdown.git
+[submodule "vim/bundle/langs/bundler"]
+	path = vim/bundle/langs/bundler
+	url = git://github.com/tpope/vim-bundler.git
+[submodule "vim/bundle/langs/javascript"]
+	path = vim/bundle/langs/javascript
+	url = git://github.com/pangloss/vim-javascript.git
+[submodule "vim/bundle/langs/csv"]
+	path = vim/bundle/langs/csv
+	url = git://github.com/vim-scripts/csv.vim.git
+[submodule "vim/bundle/langs/coffeescript"]
+	path = vim/bundle/langs/coffeescript
+	url = git://github.com/kchmck/vim-coffee-script.git
+[submodule "vim/bundle/tools/turbux"]
+	path = vim/bundle/tools/turbux
+	url = https://github.com/jgdavey/vim-turbux.git
+[submodule "vim/bundle/tools/tslime"]
+	path = vim/bundle/tools/tslime
+	url = git://github.com/kikijump/tslime.vim.git
