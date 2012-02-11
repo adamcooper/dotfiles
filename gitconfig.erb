@@ -1,0 +1,43 @@
+[user]
+  name = Adam Cooper
+  email = <%= print("Your Email: "); STDOUT.flush; STDIN.gets.chomp %>
+
+[github]
+  user = adamcooper
+  token = <%= print("Your github token: "); STDOUT.flush; STDIN.gets.chomp %>
+
+[alias]
+  ci = commit -a
+  co = checkout
+  st = status -sb
+  up = pull --rebase
+  hist = log --pretty=format:\"%h | %ad | %s %Cgreen[%an]%Creset%Cred%d%Creset\" --graph --date=short
+  d = diff --word-diff
+
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+  ui = auto
+  grep = auto
+  interactive = auto
+  pager = true
+
+[core]
+  editor = vim
+  pager = most
+  excludesfile = ~/.gitignore
+
+[push]
+  default = matching
+
+[branch]
+  autosetuprebase = always
+
+[mergetool]
+  keepBackup = false
+
+[mergetool "p4merge"]
+  cmd = p4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+  trustExitCode = false
+  keepTemporaries = false
