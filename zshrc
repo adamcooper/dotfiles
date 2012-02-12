@@ -1,16 +1,17 @@
 # Path to your oh-my-zsh configuration.
 export ZSH=$HOME/.oh-my-zsh
 
-export ZSH_THEME="candy"
+export ZSH_THEME="blinks"
 
 export DISABLE_AUTO_UPDATE="true"
 
-
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(brew bundler git)
+plugins=(brew bundler gem git rbenv)
 
 source $ZSH/oh-my-zsh.sh
+
+export PATH=/usr/local/bin:$PATH
 
 alias b='bundle exec'
 alias tmux='TERM=screen-256color-bce tmux'
@@ -26,6 +27,9 @@ export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 # Chef
 export OPSCODE_USER="acooper"
 export OPSCODE_ORGNAME="partnerpedia"
+
+# Node
+export NODE_PATH='/usr/local/lib/node_modules'
 
 # RVM
 [[ -s $HOME/.rvm/scripts/rvm ]] && . $HOME/.rvm/scripts/rvm
