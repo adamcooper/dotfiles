@@ -10,6 +10,7 @@ filetype plugin indent on " Turn on filetype plugins (:help filetype-plugin)
 
 set number            " Show line numbers
 set ruler             " Show line and column number
+set clipboard=unnamed
 
 "" Color Scheme
 colorscheme solarized
@@ -141,9 +142,6 @@ map <Left>  <nop>
 map <Right> <nop>
 map <Up>    <nop>
 map <Down>  <nop>
-" start/end of line
-map H ^
-map L $
 
 
 
