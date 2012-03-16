@@ -146,9 +146,11 @@ vmap <leader>p "*gP
 
 
 " CTR-P plugin settings
-"let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files', 'find %s -type f']
-let g:ctrlp_user_command = 'find %s -type f'
-let g:ctrlp_custom_ignore = {'dir': '\.git$\'}
+let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files', 'find %s -type f']
+"let g:ctrlp_custom_ignore = {'dir': '\.git$\'}
+"let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
+"let g:ctrlp_user_command = ['.hg/', 'hg --cwd %s locate -I .']
+"let g:ctrlp_user_command = { 'types': { 1: ['.git/', 'cd %s && git ls-files'], 2: ['.hg/', 'hg --cwd %s locate -I .'], }, 'fallback': 'find %s -type f' }
 
 " succombing to nerdtree
 let g:NERDTreeWinSize=40
