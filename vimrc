@@ -12,6 +12,8 @@ set number            " Show line numbers
 set ruler             " Show line and column number
 set clipboard=unnamed
 
+let mapleader=","
+
 "" Color Scheme
 colorscheme solarized
 call togglebg#map("<F5>")
@@ -67,11 +69,6 @@ set nobackup
 set nowritebackup
 set noswapfile
 
-
-let macvim_hig_shift_movement = 1     " mvim shift-arrow-keys (required in vimrc)
-let mapleader=","
-
-
 ""
 "" Tab Completion
 ""
@@ -117,7 +114,7 @@ endif
 ""
 "" Ack
 ""
-map <D-F> :Ack<space>
+map <leader>F :Ack<space>
 
 " Set powerline status bar to unicode to work around terminal hacks
 let g:Powerline_symbols="unicode"
@@ -143,18 +140,15 @@ map <Right> <nop>
 map <Up>    <nop>
 map <Down>  <nop>
 
+" copy selection to clipboard
+vmap <leader>y "*y
+vmap <leader>p "*gP
 
-
-" Map <Leader><Leader> to ZoomWin
-map <Leader><Leader> :ZoomWin<CR>
-
-" Insert the current directory into a command-line path
-"cmap <C-P> <C-R>=expand("%:p:h") . "/"
 
 " CTR-P plugin settings
 "let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files', 'find %s -type f']
 let g:ctrlp_user_command = 'find %s -type f'
-
+let g:ctrlp_custom_ignore = {'dir': '\.git$\'}
 
 " succombing to nerdtree
 let g:NERDTreeWinSize=40
@@ -168,11 +162,8 @@ map <Leader>f :NERDTreeFind<CR>
 
 " Run rspec in zsh
 " :map ;t :w\|:call Send_to_Tmux("rspec ".expand("%")."\n")
-
-
-
 "
 " Macros
 "
 " Convert rspec errors output into a CSV format
-let @r = 'I"2Ea","lxA"j@r'
+" let @r = 'I"2Ea","lxA"j@r'
