@@ -31,6 +31,9 @@ export OPSCODE_ORGNAME="partnerpedia"
 # Node
 export NODE_PATH='/usr/local/lib/node_modules'
 
+# stop oh-my-zsh from updating the window title
+export DISABLE_AUTO_TITLE=true
+
 # RVM
 [[ -s $HOME/.rvm/scripts/rvm ]] && . $HOME/.rvm/scripts/rvm
 
