@@ -25,9 +25,6 @@
 [submodule "vim/bundle/tools/bufexplorer"]
   path = vim/bundle/tools/bufexplorer
   url = git://github.com/corntrace/bufexplorer.git
-[submodule "vim/bundle/tools/commentary"]
-  path = vim/bundle/tools/commentary
-  url = git://github.com/tpope/vim-commentary.git
 [submodule "vim/bundle/tools/repeat"]
   path = vim/bundle/tools/repeat
   url = git://github.com/tpope/vim-repeat.git
