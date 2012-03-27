@@ -85,3 +85,6 @@
 [submodule "vim/bundle/tools/tslime"]
   path = vim/bundle/tools/tslime
   url = git://github.com/kikijump/tslime.vim.git
+[submodule "vim/bundle/tools/tcomment"]
+	path = vim/bundle/tools/tcomment
+	url = https://github.com/tomtom/tcomment_vim.git
