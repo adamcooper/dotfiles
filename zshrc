@@ -14,7 +14,7 @@ source $ZSH/oh-my-zsh.sh
 export PATH=/usr/local/bin:$PATH
 
 alias b='bundle exec'
-alias tmux='TERM=screen-256color-bce tmux'
+#alias tmux='TERM=screen-256color-bce tmux'
 
 export EDITOR=vim
 
