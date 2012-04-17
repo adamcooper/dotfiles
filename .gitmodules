@@ -88,3 +88,6 @@
 [submodule "vim/bundle/tools/tslime_2"]
   path = vim/bundle/tools/tslime_2
   url = git://github.com/jgdavey/tslime.vim.git
+[submodule "vim/bundle/tools/gitv"]
+	path = vim/bundle/tools/gitv
+	url = https://github.com/gregsexton/gitv.git

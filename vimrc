@@ -162,8 +162,8 @@ map <Leader>n :NERDTreeToggle<CR>
 map <Leader>f :NERDTreeFind<CR>
 
 
-" Run rspec in zsh
-" :map ;t :w\|:call Send_to_Tmux("rspec ".expand("%")."\n")
+" Run a ruby file in another pane
+:map <Leader>r :w\|:call Send_to_Tmux("ruby ".expand("%")."\n")<CR>
 "
 " Macros
 "
