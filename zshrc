@@ -13,7 +13,6 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH=/usr/local/bin:$PATH
 
-alias b='bundle exec'
 alias heroku=’nocorrect heroku’
 
 export EDITOR=vim
@@ -32,8 +31,11 @@ export OPSCODE_ORGNAME="partnerpedia"
 export NODE_PATH='/usr/local/lib/node_modules'
 
 # stop oh-my-zsh from updating the window title
+# nice to have for tmux!
 export DISABLE_AUTO_TITLE=true
 
-# RVM
-[[ -s $HOME/.rvm/scripts/rvm ]] && . $HOME/.rvm/scripts/rvm
+# RBENV
+# Recently had to move it from .zshenv to avoid "command not found: rbenv"
+eval "$(rbenv init -)"
+
 
