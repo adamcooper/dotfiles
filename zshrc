@@ -13,7 +13,7 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH=/usr/local/bin:$PATH
 
-alias heroku=’nocorrect heroku’
+#alias heroku=’nocorrect heroku’
 
 export EDITOR=vim
 

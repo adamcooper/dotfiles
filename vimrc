@@ -29,6 +29,8 @@ set shiftwidth=2                  " an autoindent (with <<) is two spaces
 set expandtab                     " use spaces, not tabs
 set list                          " Show invisible characters
 set backspace=indent,eol,start    " backspace through everything in insert mode
+set colorcolumn=80                " put a line marker at the 80th column
+
 "" List chars
 set listchars=""                  " Reset the listchars
 set listchars=tab:\ \             " a tab should display as "  ", trailing whitespace as "."
@@ -43,6 +45,8 @@ set incsearch                     " incremental searching
 set ignorecase                    " searches are case insensitive...
 set smartcase                     " ... unless they contain at least one capital letter
 nnoremap <leader><space> :noh<cr> " clear search
+map <leader>e :noh<enter>:NERDTreeClose<enter>:ccl<enter><C-w>=
+
 
 
 " Removes trailing spaces
@@ -94,6 +98,9 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
+map <C-w>- :sp<cr>
+map <C-w>\| :vs<cr>
+
 if has("autocmd")
   " In Makefiles, use real tabs, not tabs expanded to spaces
   au FileType make set noexpandtab
@@ -116,23 +123,6 @@ endif
 ""
 map <leader>F :Ack<space>
 
-" Set powerline status bar to unicode to work around terminal hacks
-let g:Powerline_symbols="unicode"
-if has("statusline") && !&cp
-  set laststatus=2  " always show the status bar
-
-  " Start the status line
-  set statusline=%f\ %m\ %r
-
-  " Add fugitive
-  set statusline+=%{fugitive#statusline()}
-
-  " Finish the statusline
-  set statusline+=Line:%l/%L[%p%%]
-  set statusline+=Col:%v
-  set statusline+=Buf:#%n
-  set statusline+=[%b][0x%B]
-endif
 
 " disable cursor keys in normal mode
 map <Left>  <nop>
@@ -140,13 +130,16 @@ map <Right> <nop>
 map <Up>    <nop>
 map <Down>  <nop>
 
+imap jj <esc>
+
 " copy selection to clipboard
 vmap <leader>y "*y
 vmap <leader>p "*gP
 
 
 " CTR-P plugin settings
-let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files', 'find %s -type f']
+let g:ctrlp_user_command = ['find %s -type f']
+"let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files', 'find %s -type f']
 "let g:ctrlp_custom_ignore = {'dir': '\.git$\'}
 "let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
 "let g:ctrlp_user_command = ['.hg/', 'hg --cwd %s locate -I .']
