@@ -1,7 +1,7 @@
 # Path to your oh-my-zsh configuration.
 export ZSH=$HOME/.oh-my-zsh
 
-export ZSH_THEME="candy"
+export ZSH_THEME="robbyrussell"
 
 export DISABLE_AUTO_UPDATE="true"
 

@@ -77,11 +77,7 @@ set noswapfile
 "" Tab Completion
 ""
 set wildmode=list:longest,list:full
-set wildignore+=*.o,*.obj,*.rbc,*.class,vendor/gems/*
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
-set wildignore+=*.jpg,*.jpeg,*.gif,*.png
-set wildignore+=*.zip,*.apk
-set wig=tmp/*,log/*,db/sphinx/*,*.gif,*.png,*.jpg
+set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
 
 
 " allow mouse clicks
