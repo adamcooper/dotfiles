@@ -11,8 +11,11 @@ plugins=(brew bundler gem git rbenv)
 
 source $ZSH/oh-my-zsh.sh
 
+# add homebrew
 export PATH=/usr/local/bin:$PATH
 
+# disable autocorrect
+unsetopt correct_all
 #alias heroku=’nocorrect heroku’
 
 export EDITOR=vim
