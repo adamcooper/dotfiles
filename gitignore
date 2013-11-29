@@ -2,3 +2,4 @@
 .DS_Store
 .netrwhist
 .rbenv-version
+.ruby-version
