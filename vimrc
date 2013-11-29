@@ -3,9 +3,9 @@ syntax enable         " Turn on syntax highlighting allowing local overrides
 set encoding=utf-8
 
 runtime bundle/core/pathogen/autoload/pathogen.vim
-call pathogen#infect('~/.vim/bundle/tools')
-call pathogen#infect('~/.vim/bundle/langs')
-call pathogen#infect('~/.vim/bundle/colors')
+call pathogen#infect('~/.vim/bundle/tools/{}')
+call pathogen#infect('~/.vim/bundle/langs/{}')
+call pathogen#infect('~/.vim/bundle/colors/{}')
 filetype plugin indent on " Turn on filetype plugins (:help filetype-plugin)
 
 set number            " Show line numbers
@@ -15,6 +15,7 @@ set clipboard=unnamed
 let mapleader=","
 
 "" Color Scheme
+set background=dark
 colorscheme solarized
 call togglebg#map("<F5>")
 
