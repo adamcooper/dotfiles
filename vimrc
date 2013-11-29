@@ -146,6 +146,9 @@ let g:NERDTreeMouseMode=2
 map <Leader>n :NERDTreeToggle<CR>
 map <Leader>f :NERDTreeFind<CR>
 
+" signify (git diff) settings
+let g:signify_vcs_list = ['git']
+let g:signify_disable_by_default = 0
 
 " Run a ruby file in another pane
 :map <Leader>r :w\|:call Send_to_Tmux("ruby ".expand("%")."\n")<CR>

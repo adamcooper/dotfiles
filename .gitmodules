@@ -94,3 +94,6 @@
 [submodule "vim/bundle/langs/vim-slim"]
 	path = vim/bundle/langs/vim-slim
 	url = git://github.com/slim-template/vim-slim.git
+[submodule "vim/bundle/tools/signify"]
+	path = vim/bundle/tools/signify
+	url = git@github.com:mhinz/vim-signify.git
