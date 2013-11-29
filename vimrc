@@ -62,6 +62,9 @@ autocmd BufWritePre * :call TrimWhiteSpace()
 map <F2> :call TrimWhiteSpace()<CR>
 map! <F2> :call TrimWhiteSpace()<CR>
 
+" auto save files on lose of focus
+autocmd BufLeave,FocusLost,VimResized * silent! wall
+
 " highlight current line
 set cursorline
 hi CursorLine cterm=NONE ctermbg=black
