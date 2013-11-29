@@ -39,6 +39,7 @@ export DISABLE_AUTO_TITLE=true
 
 # RBENV
 # Recently had to move it from .zshenv to avoid "command not found: rbenv"
-eval "$(rbenv init -)"
+export PATH=$HOME/.rbenv/bin:$PATH
+#eval "$(rbenv init -)"
 
 
