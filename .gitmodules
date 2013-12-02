@@ -97,3 +97,6 @@
 [submodule "vim/bundle/tools/signify"]
 	path = vim/bundle/tools/signify
 	url = git@github.com:mhinz/vim-signify.git
+[submodule "vim/bundle/tools/endwise"]
+	path = vim/bundle/tools/endwise
+	url = git://github.com/tpope/vim-endwise.git
