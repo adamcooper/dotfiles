@@ -123,7 +123,6 @@ endif
 ""
 map <leader>F :Ack<space>
 
-
 " disable cursor keys in normal mode
 map <Left>  <nop>
 map <Right> <nop>
@@ -137,9 +136,9 @@ vmap <leader>y "*y
 vmap <leader>p "*gP
 
 " CTR-P plugin settings
-let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
-let g:ctrlp_clear_cache_on_exit = 1
-let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+" let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
+" let g:ctrlp_clear_cache_on_exit = 1
+" let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
 
 " succombing to nerdtree
 let g:NERDTreeWinSize=40
@@ -152,12 +151,23 @@ map <Leader>f :NERDTreeFind<CR>
 
 " signify (git diff) settings
 let g:signify_vcs_list = ['git']
-let g:signify_disable_by_default = 0
+let g:signify_disable_by_default = 1
+
+let g:turbux_command_rspec = 'zeus rspec'
 
 " Run a ruby file in another pane
 :map <Leader>r :w\|:call Send_to_Tmux("ruby ".expand("%")."\n")<CR>
-"
-" Macros
-"
-" Convert rspec errors output into a CSV format
-" let @r = 'I"2Ea","lxA"j@r'
+
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+" bind K to grep word under cursor
+nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
