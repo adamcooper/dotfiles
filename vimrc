@@ -153,7 +153,11 @@ map <Leader>f :NERDTreeFind<CR>
 let g:signify_vcs_list = ['git']
 let g:signify_disable_by_default = 1
 
-let g:turbux_command_rspec = 'zeus rspec'
+
+if filereadable("zeus.json")
+  let g:turbux_command_rspec = 'zeus rspec'
+  let g:turbux_command_cucumber = 'zeus cucumber'
+endif
 
 " Run a ruby file in another pane
 :map <Leader>r :w\|:call Send_to_Tmux("ruby ".expand("%")."\n")<CR>
