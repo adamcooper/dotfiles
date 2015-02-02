@@ -100,3 +100,6 @@
 [submodule "vim/bundle/tools/endwise"]
 	path = vim/bundle/tools/endwise
 	url = git://github.com/tpope/vim-endwise.git
+[submodule "vim/bundle/langs/golang"]
+	path = vim/bundle/langs/golang
+	url = https://github.com/fatih/vim-go.git
