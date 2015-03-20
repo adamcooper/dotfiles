@@ -21,17 +21,20 @@ unsetopt correct_all
 export EDITOR=vim
 
 # Ruby tweaks
-export RUBY_HEAP_MIN_SLOTS=500000
+export RUBY_GC_HEAP_INIT_SLOTS=500000
 export RUBY_HEAP_SLOTS_INCREMENT=250000
 export RUBY_GC_MALLOC_LIMIT=50000000
 export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 
-# Chef
-export OPSCODE_USER="acooper"
-export OPSCODE_ORGNAME="partnerpedia"
-
 # Node
 export NODE_PATH='/usr/local/lib/node_modules'
+
+# Go Lang settings
+export GOPATH=$HOME/Projects/go
+export PATH=$PATH:/usr/local/opt/go/libexec/bin
+
+# Ionic settings
+export PATH=$PATH:~/Projects/android-sdk/tools:~/Projects/android-sdk/platform-tools
 
 # stop oh-my-zsh from updating the window title
 # nice to have for tmux!
