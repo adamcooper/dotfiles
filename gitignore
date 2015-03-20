@@ -1,5 +1,10 @@
 *~
+
+*.bin
+
+# OS Generated files
 .DS_Store
-.netrwhist
-.rbenv-version
-.ruby-version
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
