@@ -1,10 +1,9 @@
 [user]
   name = Adam Cooper
-  email = <%= print("Your Email: "); STDOUT.flush; STDIN.gets.chomp %>
+  email = adam.cooper@gmail.com
 
 [github]
   user = adamcooper
-  token = <%= print("Your github token: "); STDOUT.flush; STDIN.gets.chomp %>
 
 [alias]
   ci = commit -a
