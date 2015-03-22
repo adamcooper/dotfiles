@@ -31,7 +31,7 @@ export NODE_PATH='/usr/local/lib/node_modules'
 
 # Go Lang settings
 export GOPATH=$HOME/Projects/go
-export PATH=$PATH:/usr/local/opt/go/libexec/bin
+export PATH=$PATH:/usr/local/opt/go/libexec/bin:$GOPATH/sdk/go_appengine
 
 # Ionic settings
 export PATH=$PATH:~/Projects/android-sdk/tools:~/Projects/android-sdk/platform-tools
