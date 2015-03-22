@@ -1,11 +1,98 @@
-set nocompatible      " Use vim, no vi defaults
 syntax enable         " Turn on syntax highlighting allowing local overrides
 set encoding=utf-8
 
-runtime bundle/core/pathogen/autoload/pathogen.vim
-call pathogen#infect('~/.vim/bundle/tools/{}')
-call pathogen#infect('~/.vim/bundle/langs/{}')
-call pathogen#infect('~/.vim/bundle/colors/{}')
+"NeoBundle Scripts-----------------------------
+if has('vim_starting')
+  if &compatible
+    set nocompatible               " Be iMproved
+  endif
+
+  " Required:
+  set runtimepath+=~/.vim/neobundle.vim.git/
+endif
+
+" Required:
+call neobundle#begin(expand('~/.vim/neobundle'))
+
+" Let NeoBundle manage NeoBundle
+" Required:
+NeoBundleFetch 'Shougo/neobundle.vim'
+
+" Tools
+NeoBundle 'tpope/vim-dispatch'
+
+" Formatting - Colors & Styles
+NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'bling/vim-airline'
+NeoBundle 'nathanaelkane/vim-indent-guides'
+
+" Tools - Search & Files
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'mileszs/ack.vim'
+" NeoBundle 'ctrlpvim/ctrlp.vim'
+NeoBundle 'corntrace/bufexplorer'
+
+" Tools - Formatting
+NeoBundle 'tpope/vim-commentary'
+NeoBundle 'tpope/vim-endwise'
+NeoBundle 'tpope/vim-repeat'
+NeoBundle 'tpope/vim-surround'
+
+" Tools - Git
+NeoBundle 'tpope/vim-git'
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'mattn/gist-vim.git'
+
+" Tools - Copy Pasta
+"NeoBundle "svermeulen/vim-easyclip" " changes vim d an p too much
+NeoBundle 'vim-scripts/YankRing.vim'
+
+" Tools - Snippets
+" NeoBundle 'Shougo/neosnippet.vim'
+" NeoBundle 'Shougo/neosnippet-snippets'
+
+" Languages
+
+" Langagues - GO
+NeoBundle 'fatih/vim-go.git'
+
+" Lanagues - Text
+NeoBundle 'tpope/vim-markdown.git'
+NeoBundle 'vim-scripts/csv.vim.git'
+
+" Languages - Ruby
+NeoBundle 'tpope/vim-bundler.git'
+NeoBundle 'tpope/vim-rails.git'
+NeoBundle 'thoughtbot/vim-rspec.git'
+NeoBundle 'vim-ruby/vim-ruby.git'
+
+" Languages - HTML / CSS / JS
+NeoBundle 'tpope/vim-haml.git'
+NeoBundle 'kchmck/vim-coffee-script.git'
+NeoBundle 'pangloss/vim-javascript.git'
+"NeoBundle 'cakebaker/scss-syntax.vim.git', { 'directory': 'scss' }
+NeoBundle 'slim-template/vim-slim.git'
+"
+
+"NeoBundle 'ervandew/supertab.git', { 'directory': 'supertab' }
+"NeoBundle 'majutsushi/tagbar.git', { 'directory': 'tagbar' }
+"NeoBundle 'jgdavey/tslime.vim.git', { 'directory': 'tslime_2' }
+"NeoBundle 'jgdavey/vim-turbux.git', { 'directory': 'turbux' }
+
+
+" Required:
+call neobundle#end()
+
+" If there are uninstalled bundles found on startup,
+" this will conveniently prompt you to install them.
+NeoBundleCheck
+
+
+" Required:
+filetype plugin indent on
+
+"End NeoBundle Scripts-------------------------
+
 filetype plugin indent on " Turn on filetype plugins (:help filetype-plugin)
 
 set number            " Show line numbers
@@ -46,9 +133,9 @@ set incsearch                     " incremental searching
 set ignorecase                    " searches are case insensitive...
 set smartcase                     " ... unless they contain at least one capital letter
 nnoremap <leader><space> :noh<cr> " clear search
+
+" edit mode
 map <leader>e :noh<enter>:NERDTreeClose<enter>:ccl<enter><C-w>=
-
-
 
 " Removes trailing spaces
 function! TrimWhiteSpace()
@@ -56,15 +143,8 @@ function! TrimWhiteSpace()
   ''
   :retab
 :endfunction
-autocmd FileWritePre * :call TrimWhiteSpace()
-autocmd FileAppendPre * :call TrimWhiteSpace()
-autocmd FilterWritePre * :call TrimWhiteSpace()
-autocmd BufWritePre * :call TrimWhiteSpace()
 map <F2> :call TrimWhiteSpace()<CR>
 map! <F2> :call TrimWhiteSpace()<CR>
-
-" auto save files on lose of focus
-autocmd BufLeave,FocusLost,VimResized * silent! wall
 
 " highlight current line
 set cursorline
@@ -83,14 +163,13 @@ set noswapfile
 set wildmode=list:longest,list:full
 set wildignore+=*.o,*.obj,.git,*.rbc,*.class,.svn,vendor/gems/*
 
-
 " allow mouse clicks
 set mouse=a
 
 " Without setting this, ZoomWin restores windows in a way that causes
 " equalalways behavior to be triggered the next time CommandT is used.
 " This is likely a bludgeon to solve some other issue, but it works
-set noequalalways
+" set noequalalways
 
 " Navigate between split windows
 nnoremap <C-j> <C-w>j
@@ -98,6 +177,7 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
+" Same split settings as tmux
 map <C-w>- :sp<cr>
 map <C-w>\| :vs<cr>
 
@@ -115,6 +195,11 @@ if has("autocmd")
   " see :help last-position-jump
   au BufReadPost * if &filetype !~ '^git\c' && line("'\"") > 0 && line("'\"") <= line("$")
     \| exe "normal! g`\"" | endif
+  "
+  au FileWritePre * :call TrimWhiteSpace()
+  au FileAppendPre * :call TrimWhiteSpace()
+  au FilterWritePre * :call TrimWhiteSpace()
+  au BufWritePre * :call TrimWhiteSpace()
 endif
 
 
@@ -134,6 +219,12 @@ imap jj <esc>
 " copy selection to clipboard
 vmap <leader>y "*y
 vmap <leader>p "*gP
+" Copy Paste settings - EasyClip
+"
+" share yank buffer across vims
+" let g:EasyClipShareYank = 1
+" toggle formatting on a block of pasted text
+" nmap <leader>cf <plug>EasyClipToggleFormattedPaste
 
 " CTR-P plugin settings
 " let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
