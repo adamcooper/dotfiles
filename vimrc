@@ -216,9 +216,6 @@ map <Down>  <nop>
 
 imap jj <esc>
 
-" copy selection to clipboard
-vmap <leader>y "*y
-vmap <leader>p "*gP
 " Copy Paste settings - EasyClip
 "
 " share yank buffer across vims
