@@ -1,99 +1,77 @@
 syntax enable         " Turn on syntax highlighting allowing local overrides
 set encoding=utf-8
 
-"NeoBundle Scripts-----------------------------
-if has('vim_starting')
-  if &compatible
-    set nocompatible               " Be iMproved
-  endif
+" Vundle requirments
+set nocompatible
+filetype off
 
-  " Required:
-  set runtimepath+=~/.vim/neobundle.vim.git/
-endif
-
-" Required:
-call neobundle#begin(expand('~/.vim/neobundle'))
-
-" Let NeoBundle manage NeoBundle
-" Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " Tools
-NeoBundle 'tpope/vim-dispatch'
+Plugin 'tpope/vim-dispatch'
 
 " Formatting - Colors & Styles
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'nathanaelkane/vim-indent-guides'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'bling/vim-airline'
+Plugin 'nathanaelkane/vim-indent-guides'
 
 " Tools - Search & Files
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'mileszs/ack.vim'
-" NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'corntrace/bufexplorer'
+Plugin 'scrooloose/nerdtree'
+Plugin 'mileszs/ack.vim'
+" Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'corntrace/bufexplorer'
 
 " Tools - Formatting
-NeoBundle 'tpope/vim-commentary'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'tpope/vim-surround'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-endwise'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-surround'
 
 " Tools - Git
-NeoBundle 'tpope/vim-git'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'mattn/gist-vim.git'
+Plugin 'tpope/vim-git'
+Plugin 'tpope/vim-fugitive'
+Plugin 'mattn/gist-vim.git'
 
 " Tools - Copy Pasta
-"NeoBundle "svermeulen/vim-easyclip" " changes vim d an p too much
-NeoBundle 'vim-scripts/YankRing.vim'
+"Plugin 'svermeulen/vim-easyclip' " changes vim d an p too much
+Plugin 'vim-scripts/YankRing.vim'
 
 " Tools - Snippets
-" NeoBundle 'Shougo/neosnippet.vim'
-" NeoBundle 'Shougo/neosnippet-snippets'
+" Plugin 'Shougo/neosnippet.vim'
+" Plugin 'Shougo/neosnippet-snippets'
 
 " Languages
 
 " Langagues - GO
-NeoBundle 'fatih/vim-go.git'
+Plugin 'fatih/vim-go.git'
 
 " Lanagues - Text
-NeoBundle 'tpope/vim-markdown.git'
-NeoBundle 'vim-scripts/csv.vim.git'
+Plugin 'tpope/vim-markdown.git'
+Plugin 'vim-scripts/csv.vim.git'
 
 " Languages - Ruby
-NeoBundle 'tpope/vim-bundler.git'
-NeoBundle 'tpope/vim-rails.git'
-NeoBundle 'thoughtbot/vim-rspec.git'
-NeoBundle 'vim-ruby/vim-ruby.git'
+Plugin 'tpope/vim-bundler.git'
+Plugin 'tpope/vim-rails.git'
+Plugin 'thoughtbot/vim-rspec.git'
+Plugin 'vim-ruby/vim-ruby.git'
 
 " Languages - HTML / CSS / JS
-NeoBundle 'tpope/vim-haml.git'
-NeoBundle 'kchmck/vim-coffee-script.git'
-NeoBundle 'pangloss/vim-javascript.git'
-"NeoBundle 'cakebaker/scss-syntax.vim.git', { 'directory': 'scss' }
-NeoBundle 'slim-template/vim-slim.git'
-"
+Plugin 'tpope/vim-haml.git'
+Plugin 'kchmck/vim-coffee-script.git'
+Plugin 'pangloss/vim-javascript.git'
+"Plugin 'cakebaker/scss-syntax.vim.git', { 'directory': 'scss' }
+Plugin 'slim-template/vim-slim.git'
 
-"NeoBundle 'ervandew/supertab.git', { 'directory': 'supertab' }
-"NeoBundle 'majutsushi/tagbar.git', { 'directory': 'tagbar' }
-"NeoBundle 'jgdavey/tslime.vim.git', { 'directory': 'tslime_2' }
-"NeoBundle 'jgdavey/vim-turbux.git', { 'directory': 'turbux' }
+"Plugin 'ervandew/supertab.git', { 'directory': 'supertab' }
+"Plugin 'majutsushi/tagbar.git', { 'directory': 'tagbar' }
+"Plugin 'jgdavey/tslime.vim.git', { 'directory': 'tslime_2' }
+"Plugin 'jgdavey/vim-turbux.git', { 'directory': 'turbux' }
 
-
-" Required:
-call neobundle#end()
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
-
-
-" Required:
-filetype plugin indent on
-
-"End NeoBundle Scripts-------------------------
-
-filetype plugin indent on " Turn on filetype plugins (:help filetype-plugin)
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required (:help filetype-plugin)
 
 set number            " Show line numbers
 set ruler             " Show line and column number
