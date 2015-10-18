@@ -20,8 +20,25 @@ Plugin 'nathanaelkane/vim-indent-guides'
 " Tools - Search & Files
 Plugin 'scrooloose/nerdtree'
 Plugin 'mileszs/ack.vim'
-" Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+let g:ctrlp_user_command = {
+  \ 'types': {
+    \ 1: ['.git', 'cd %s && git ls-files'],
+    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+    \ },
+  \ 'fallback': 'find %s -type f'
+\ }
+let g:ctrlp_clear_cache_on_exit = 1
+let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+let g:ctrlp_map='<F11>'
+nnoremap <leader>f :CtrlP<CR>
+nnoremap <leader>b :CtrlPBuffer<CR>
+" nnoremap <leader>m :CtrlPMRUFiles<CR>
+" nnoremap <leader>t :CtrlPTag<CR>
+
 Plugin 'corntrace/bufexplorer'
+Plugin 'majutsushi/tagbar'
+nmap <F8> :TagbarToggle<CR>
 
 " Tools - Formatting
 Plugin 'tpope/vim-commentary'
@@ -39,10 +56,28 @@ Plugin 'mattn/gist-vim.git'
 Plugin 'vim-scripts/YankRing.vim'
 
 " Tools - Snippets
+Plugin 'ervandew/supertab'
 " Plugin 'Shougo/neosnippet.vim'
 " Plugin 'Shougo/neosnippet-snippets'
 
 " Languages
+
+Plugin 'scrooloose/syntastic'
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_loc_list_height=5
+let g:syntastic_javascript_checkers = ['eslint']
+" this disables a lot of warnings for angular -
+" https://github.com/scrooloose/syntastic/issues/612
+let g:syntastic_html_tidy_ignore_errors=[" proprietary attribute " ,"trimming empty <", "unescaped &" , "lacks \"action", "is not recognized!", "discarding unexpected"]
+
+" Languages - RAML
+Plugin 'awochna/vim-raml'
 
 " Langagues - GO
 Plugin 'fatih/vim-go.git'
@@ -61,13 +96,16 @@ Plugin 'vim-ruby/vim-ruby.git'
 Plugin 'tpope/vim-haml.git'
 Plugin 'kchmck/vim-coffee-script.git'
 Plugin 'pangloss/vim-javascript.git'
+
+Plugin 'mxw/vim-jsx.git'
+let g:jsx_ext_required = 0
+
 "Plugin 'cakebaker/scss-syntax.vim.git', { 'directory': 'scss' }
 Plugin 'slim-template/vim-slim.git'
 
-"Plugin 'ervandew/supertab.git', { 'directory': 'supertab' }
-"Plugin 'majutsushi/tagbar.git', { 'directory': 'tagbar' }
 "Plugin 'jgdavey/tslime.vim.git', { 'directory': 'tslime_2' }
 "Plugin 'jgdavey/vim-turbux.git', { 'directory': 'turbux' }
+"Plugin 'majutsushi/tagbar.git', { 'directory': 'tagbar' }
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -166,8 +204,8 @@ if has("autocmd")
   " Set the Ruby filetype for a number of common Ruby files without .rb
   au BufRead,BufNewFile {Gemfile,Rakefile,Vagrantfile,Thorfile,config.ru} set ft=ruby
 
-  " Treat JSON files like JavaScript
-  au BufNewFile,BufRead *.json set ft=javascript
+  " " Treat JSON files like JavaScript
+  au BufNewFile,BufRead *.json set ft=javascript commentstring=//\ %s
 
   " remember last position in file
   " see :help last-position-jump
@@ -201,12 +239,7 @@ imap jj <esc>
 " toggle formatting on a block of pasted text
 " nmap <leader>cf <plug>EasyClipToggleFormattedPaste
 
-" CTR-P plugin settings
-" let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
-" let g:ctrlp_clear_cache_on_exit = 1
-" let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
-
-" succombing to nerdtree
+" ng to nerdtree
 let g:NERDTreeWinSize=40
 let g:NERDTreeChDirMode=2
 let g:NERDTreeMinimalUI=1
@@ -219,6 +252,13 @@ map <Leader>f :NERDTreeFind<CR>
 let g:signify_vcs_list = ['git']
 let g:signify_disable_by_default = 1
 
+" navigate buffers
+map <A-h> :bp<CR>
+map <A-l> :bn<CR>
+
+" move lines up and down
+map <A-j> :m +1 <CR>
+map <A-k> :m -2 <CR>
 
 if filereadable("zeus.json")
   let g:turbux_command_rspec = 'zeus rspec'
@@ -234,10 +274,10 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  " let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
   " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
+  " let g:ctrlp_use_caching = 0
 endif
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
