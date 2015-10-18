@@ -27,7 +27,7 @@ export RUBY_GC_MALLOC_LIMIT=50000000
 export RUBY_HEAP_SLOTS_GROWTH_FACTOR=1
 
 # Node
-export NODE_PATH='/usr/local/lib/node_modules'
+# export NODE_PATH='/usr/local/lib/node_modules'
 
 # Go Lang settings
 export GOPATH=$HOME/Projects/go
@@ -46,3 +46,6 @@ export PATH=$HOME/.rbenv/bin:$PATH
 #eval "$(rbenv init -)"
 
 
+
+export NVM_DIR="/Users/adam/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
