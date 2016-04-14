@@ -9,9 +9,18 @@ There is a little bit of specific initial setup to get things working smoothly.
 * Make sure you have the latest vim, tmux, and iterm2
 
 ```
-brew install --HEAD https://raw.github.com/adamv/homebrew-alt/master/duplicates/vim.rb
 brew install tmux
-brew install reattach-to-user-namespace
+brew install reattach-to-user-namespace " not sure if this is still needed
+```
+
+# Symlinking dotfiles
+
+```
+brew tap thoughtbot/formulae
+brew install rcm
+git clone https://github.com/mhartington/dotfiles.git ~/.dotfiles
+cd $HOME
+RCRC=.dotfiles/rcrc rcup
 ```
 
 # Iterm 2 Setup
