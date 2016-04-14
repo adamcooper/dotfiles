@@ -42,3 +42,5 @@
   cmd = p4merge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
   trustExitCode = false
   keepTemporaries = false
+[credential]
+	helper = osxkeychain
