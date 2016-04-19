@@ -1,99 +1,100 @@
 syntax enable         " Turn on syntax highlighting allowing local overrides
 set encoding=utf-8
 
-"NeoBundle Scripts-----------------------------
+" Setup Dein  ----------------------------------------------------------{{{
+" If Dein is not installed, do it first
+if (!isdirectory(expand("$HOME/.dotfiles/vim/repos/github.com/Shougo/dein.vim")))
+  call system(expand("mkdir -p $HOME/.dotfiles/vim/repos/github.com"))
+  call system(expand("git clone https://github.com/Shougo/dein.vim $HOME/.dotfiles/vim/repos/github.com/Shougo/dein.vim"))
+endif
 if has('vim_starting')
   if &compatible
     set nocompatible               " Be iMproved
   endif
 
   " Required:
-  set runtimepath+=~/.vim/neobundle.vim.git/
+  set runtimepath+=~/.dotfiles/vim/repos/github.com/Shougo/dein.vim
 endif
 
 " Required:
-call neobundle#begin(expand('~/.vim/neobundle'))
+  call dein#begin(expand('~/.dotfiles/vim'))
+  let pluginsExist = 0
 
-" Let NeoBundle manage NeoBundle
 " Required:
-NeoBundleFetch 'Shougo/neobundle.vim'
+  call dein#add('Shougo/dein.vim')
 
 " Tools
-NeoBundle 'tpope/vim-dispatch'
+  call dein#add('tpope/vim-dispatch')
 
 " Formatting - Colors & Styles
-NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'bling/vim-airline'
-NeoBundle 'nathanaelkane/vim-indent-guides'
+  call dein#add('altercation/vim-colors-solarized')
+  call dein#add('bling/vim-airline')
+  call dein#add('nathanaelkane/vim-indent-guides')
 
 " Tools - Search & Files
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'mileszs/ack.vim'
-" NeoBundle 'ctrlpvim/ctrlp.vim'
-NeoBundle 'corntrace/bufexplorer'
+  call dein#add('scrooloose/nerdtree')
+  call dein#add('mileszs/ack.vim')
+  call dein#add('ctrlpvim/ctrlp.vim')
+  call dein#add('corntrace/bufexplorer')
 
 " Tools - Formatting
-NeoBundle 'tpope/vim-commentary'
-NeoBundle 'tpope/vim-endwise'
-NeoBundle 'tpope/vim-repeat'
-NeoBundle 'tpope/vim-surround'
+  call dein#add('tpope/vim-commentary')
+  call dein#add('tpope/vim-endwise')
+  call dein#add('tpope/vim-repeat')
+  call dein#add('tpope/vim-surround')
 
 " Tools - Git
-NeoBundle 'tpope/vim-git'
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'mattn/gist-vim.git'
+  call dein#add('tpope/vim-git')
+  call dein#add('tpope/vim-fugitive')
+  call dein#add('mattn/gist-vim.git')
 
 " Tools - Copy Pasta
-"NeoBundle "svermeulen/vim-easyclip" " changes vim d an p too much
-NeoBundle 'vim-scripts/YankRing.vim'
+" call dein#add("svermeulen/vim-easyclip") " changes vim d an p too much
+" call dein#add('vim-scripts/YankRing.vim')
 
 " Tools - Snippets
-" NeoBundle 'Shougo/neosnippet.vim'
-" NeoBundle 'Shougo/neosnippet-snippets'
+"   call dein#add('Shougo/neosnippet.vim')
+"   call dein#add('Shougo/neosnippet-snippets')
 
 " Languages
 
 " Langagues - GO
-NeoBundle 'fatih/vim-go.git'
+  call dein#add('fatih/vim-go.git')
 
 " Lanagues - Text
-NeoBundle 'tpope/vim-markdown.git'
-NeoBundle 'vim-scripts/csv.vim.git'
+  call dein#add('tpope/vim-markdown.git')
+  call dein#add('vim-scripts/csv.vim.git')
 
 " Languages - Ruby
-NeoBundle 'tpope/vim-bundler.git'
-NeoBundle 'tpope/vim-rails.git'
-NeoBundle 'thoughtbot/vim-rspec.git'
-NeoBundle 'vim-ruby/vim-ruby.git'
+  call dein#add('tpope/vim-bundler.git')
+  call dein#add('tpope/vim-rails.git')
+  call dein#add('thoughtbot/vim-rspec.git')
+  call dein#add('vim-ruby/vim-ruby.git')
 
 " Languages - HTML / CSS / JS
-NeoBundle 'tpope/vim-haml.git'
-NeoBundle 'kchmck/vim-coffee-script.git'
-NeoBundle 'pangloss/vim-javascript.git'
-"NeoBundle 'cakebaker/scss-syntax.vim.git', { 'directory': 'scss' }
-NeoBundle 'slim-template/vim-slim.git'
+  call dein#add('tpope/vim-haml.git')
+  call dein#add('kchmck/vim-coffee-script.git')
+  call dein#add('pangloss/vim-javascript.git')
+" call dein#add('cakebaker/scss-syntax.vim.git', { 'directory': 'scss' })
+  call dein#add('slim-template/vim-slim.git')
 "
 
-"NeoBundle 'ervandew/supertab.git', { 'directory': 'supertab' }
-"NeoBundle 'majutsushi/tagbar.git', { 'directory': 'tagbar' }
-"NeoBundle 'jgdavey/tslime.vim.git', { 'directory': 'tslime_2' }
-"NeoBundle 'jgdavey/vim-turbux.git', { 'directory': 'turbux' }
+" call dein#add('ervandew/supertab.git', { 'directory': 'supertab' })
+" call dein#add('majutsushi/tagbar.git', { 'directory': 'tagbar' })
+" call dein#add('jgdavey/tslime.vim.git', { 'directory': 'tslime_2' })
+" call dein#add('jgdavey/vim-turbux.git', { 'directory': 'turbux' })
+
+
+  if dein#check_install()
+    call dein#install()
+  endif
+  call dein#end()
 
 
 " Required:
-call neobundle#end()
-
-" If there are uninstalled bundles found on startup,
-" this will conveniently prompt you to install them.
-NeoBundleCheck
-
-
-" Required:
-filetype plugin indent on
-
-"End NeoBundle Scripts-------------------------
-
 filetype plugin indent on " Turn on filetype plugins (:help filetype-plugin)
+" }}}
+
 
 set number            " Show line numbers
 set ruler             " Show line and column number
