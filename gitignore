@@ -1,6 +1,7 @@
 *~
 
 *.bin
+tags
 
 # OS Generated files
 .DS_Store

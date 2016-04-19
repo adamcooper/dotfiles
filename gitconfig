@@ -29,6 +29,9 @@
   pager = less
   excludesfile = ~/.gitignore
 
+[fetch]
+	prune = true
+
 [push]
   default = tracking
 
@@ -43,4 +46,4 @@
   trustExitCode = false
   keepTemporaries = false
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
