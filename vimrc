@@ -36,12 +36,13 @@ endif
   call dein#add('mileszs/ack.vim')
   call dein#add('ctrlpvim/ctrlp.vim')
   call dein#add('corntrace/bufexplorer')
-
-" Tools - Formatting
+"
+" " Tools - Formatting
   call dein#add('tpope/vim-commentary')
   call dein#add('tpope/vim-endwise')
   call dein#add('tpope/vim-repeat')
   call dein#add('tpope/vim-surround')
+  " call dein#add('junegunn/vim-easy-align')
 
 " Tools - Git
   call dein#add('tpope/vim-git')
@@ -172,6 +173,10 @@ set mouse=a
 " This is likely a bludgeon to solve some other issue, but it works
 " set noequalalways
 
+" This allows <C-h> to be mapped otherwise it overwrites it
+if has('nvim')
+    nmap <BS> <C-W>h
+endif
 " Navigate between split windows
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -227,10 +232,11 @@ vmap <leader>p "*gP
 " toggle formatting on a block of pasted text
 " nmap <leader>cf <plug>EasyClipToggleFormattedPaste
 
-" CTR-P plugin settings
-" let g:ctrlp_user_command = ['.git/', 'cd %s && git ls-files']
-" let g:ctrlp_clear_cache_on_exit = 1
-" let g:ctrlp_custom_ignore = '\.git$\|\.hg$\|\.svn$'
+" easy align mapping
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+" xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+" nmap ga <Plug>(EasyAlign)
 
 " succombing to nerdtree
 let g:NERDTreeWinSize=40
@@ -244,7 +250,6 @@ map <Leader>f :NERDTreeFind<CR>
 " signify (git diff) settings
 let g:signify_vcs_list = ['git']
 let g:signify_disable_by_default = 1
-
 
 if filereadable("zeus.json")
   let g:turbux_command_rspec = 'zeus rspec'
@@ -265,5 +270,6 @@ if executable('ag')
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 endif
+
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
