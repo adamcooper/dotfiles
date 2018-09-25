@@ -1,4 +1,4 @@
 EXCLUDES="README.md LICENSE Rakefile"
-DOTFILES_DIRS="$HOME/.dotfiles $HOME/.zprezto/runcomms"
+DOTFILES_DIRS="$HOME/.dotfiles $HOME/.zprezto/runcoms"
 
 
