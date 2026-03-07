@@ -1,0 +1,6 @@
+[settings]
+idiomatic_version_file_enable_tools = ["node", "python", "ruby"]
+status = { missing_tools = "if_other_versions_installed" }
+
+[tools]
+# Add long-lived global tools here only when you want them on every machine.

@@ -1,0 +1,75 @@
+[user]
+	name = Adam Cooper
+	email = adam.cooper@gmail.com
+
+[include]
+	path = ~/.gitconfig.local
+
+[alias]
+  st = status -sb
+  co = checkout
+  br = branch -vv
+  ci = commit
+  ca = commit -a
+  amend = commit --amend
+  last = log -1 --stat
+  up = pull --rebase --autostash
+  hist = log --graph --date=short --pretty=format:\"%C(auto)%h%d %s %Cgreen(%cr) %C(blue)<%an>%Creset\"
+  d = diff --submodule=diff
+  dw = diff --word-diff
+  dc = diff --cached --submodule=diff
+
+[color]
+  branch = auto
+  diff = auto
+  status = auto
+  ui = auto
+  grep = auto
+  interactive = auto
+  pager = true
+
+[core]
+  editor = {{ if or (eq .role "personal") (eq .role "work") }}code --wait{{ else }}nvim{{ end }}
+  pager = less -FRX
+  excludesfile = ~/.gitignore
+
+[init]
+  defaultBranch = main
+
+[help]
+  autocorrect = prompt
+
+[fetch]
+  prune = true
+  pruneTags = true
+
+[push]
+  autoSetupRemote = true
+  default = current
+  followTags = true
+
+[branch]
+  sort = -committerdate
+
+[pull]
+  rebase = true
+
+[rebase]
+  autoStash = true
+  updateRefs = true
+
+[commit]
+  verbose = true
+
+[merge]
+  conflictstyle = zdiff3
+
+[rerere]
+  enabled = true
+  autoupdate = true
+
+[diff]
+  algorithm = histogram
+  colorMoved = default
+  mnemonicPrefix = true
+  renames = true

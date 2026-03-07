@@ -1,0 +1,89 @@
+HISTFILE="${XDG_STATE_HOME:-$HOME/.local/state}/zsh/history"
+HISTSIZE=50000
+SAVEHIST=50000
+
+mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}/zsh" "${XDG_STATE_HOME:-$HOME/.local/state}/zsh"
+
+setopt AUTO_CD
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_REDUCE_BLANKS
+setopt HIST_VERIFY
+setopt INTERACTIVE_COMMENTS
+setopt SHARE_HISTORY
+
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+zmodload zsh/complist
+compinit -d "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump"
+
+bindkey -e
+
+export EDITOR="{{ if or (eq .role "personal") (eq .role "work") }}code --wait{{ else }}nvim{{ end }}"
+export VISUAL="$EDITOR"
+export PAGER="less -FRX"
+export BAT_THEME="ansi"
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+
+path=(
+  "$HOME/.local/bin"
+  "$HOME/bin"
+  $path
+)
+
+if command -v eza >/dev/null 2>&1; then
+  alias ls='eza'
+  alias ll='eza -lag --git'
+fi
+
+if command -v bat >/dev/null 2>&1; then
+  alias cat='bat --paging=never'
+elif command -v batcat >/dev/null 2>&1; then
+  alias bat='batcat'
+  alias cat='batcat --paging=never'
+fi
+
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh)"
+fi
+
+if command -v direnv >/dev/null 2>&1; then
+  eval "$(direnv hook zsh)"
+fi
+
+if command -v zoxide >/dev/null 2>&1; then
+  eval "$(zoxide init zsh)"
+fi
+
+if [ -r "$HOME/.fzf.zsh" ]; then
+  source "$HOME/.fzf.zsh"
+fi
+
+{{ if .use_starship -}}
+if command -v starship >/dev/null 2>&1; then
+  eval "$(starship init zsh)"
+fi
+{{ else -}}
+autoload -Uz colors && colors
+setopt PROMPT_SUBST
+PROMPT='%F{cyan}%n@%m%f %F{yellow}%1~%f %(?.%F{green}.%F{red})%#%f '
+{{ end -}}
+
+{{ if .use_atuin -}}
+if command -v atuin >/dev/null 2>&1; then
+  eval "$(atuin init zsh --disable-up-arrow)"
+fi
+{{ end -}}
+
+if [ -r "$XDG_CONFIG_HOME/zsh/aliases.zsh" ]; then
+  source "$XDG_CONFIG_HOME/zsh/aliases.zsh"
+fi
+
+if [ -r "$XDG_CONFIG_HOME/zsh/functions.zsh" ]; then
+  source "$XDG_CONFIG_HOME/zsh/functions.zsh"
+fi
+
+if [ -r "$XDG_CONFIG_HOME/zsh/local.zsh" ]; then
+  source "$XDG_CONFIG_HOME/zsh/local.zsh"
+fi

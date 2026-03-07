@@ -1,42 +1,103 @@
-# DotFiles
+# Dotfiles
 
-These are my dotfiles that I use.  They are setup primarily around Terminal Vim, ITerm2, and Tmux.
+This repo is now structured as a `chezmoi` source tree for a modern `zsh`
+workflow shared across:
 
-There is a little bit of specific initial setup to get things working smoothly.
+- a personal macOS machine
+- a work machine with light customization
+- disposable remote coding servers after user-level bootstrap
 
-# Setup
+The stack this repo is designed for:
 
-* Make sure you have the latest vim, tmux, and iterm2
+- `chezmoi` for user-level dotfiles
+- `zsh` as the base shell everywhere
+- `mise` for runtimes and project tool versions
+- `tmux` only on remote coding hosts
+- `Neovim` remotely and `VS Code` locally
+- separate private bootstrap for provisioning disposable Linux dev servers
 
+## Repo layout
+
+- `home/`: the chezmoi source state root
+- `docs/`: rollout notes and migration planning
+- `scripts/`: local and Linux bootstrap helpers
+
+`home/` currently manages:
+
+- `.gitconfig`, `.gitconfig.local`, `.gitignore`
+- `.zshenv`, `.zprofile`, `.zshrc`
+- `~/.config/zsh/*`
+- `~/.config/tmux/tmux.conf`
+- `~/.config/nvim/init.lua`
+- `~/.config/mise/config.toml`
+- `~/.config/ghostty/config`
+- `~/.config/starship.toml`
+- `~/.ssh/config`
+
+## Bootstrap
+
+### macOS
+
+```sh
+./scripts/bootstrap-macos.sh
+chezmoi init --apply https://github.com/adamcooper/dotfiles.git
 ```
-brew install tmux
-brew install reattach-to-user-namespace " not sure if this is still needed
+
+Then edit `~/.config/chezmoi/chezmoi.toml` and set:
+
+- `role = "personal"` on your personal machine
+- `role = "work"` on your work machine
+
+### Linux / remote dev host
+
+```sh
+./scripts/bootstrap-linux.sh
+chezmoi init --apply https://github.com/adamcooper/dotfiles.git
 ```
 
-# Symlinking dotfiles
+Then set `role = "remote"` in `~/.config/chezmoi/chezmoi.toml`.
 
-```
-brew tap thoughtbot/formulae
-brew install rcm
-git clone https://github.com/mhartington/dotfiles.git ~/.dotfiles
-cd $HOME
-RCRC=.dotfiles/rcrc rcup
-```
+## Machine roles
 
-# Iterm 2 Setup
+The generated `~/.config/chezmoi/chezmoi.toml` contains a small amount of
+machine-local data:
 
-I installed the solarized colorscheme.  Vim and tmux have the corresponding color schemes setup as well.
+- `role = "personal"` for your main macOS machine
+- `role = "work"` for your work machine
+- `role = "remote"` for disposable Linux coding boxes
+- `use_starship = true` if you want a Starship prompt
+- `use_atuin = true` if you want Atuin on that specific machine
 
-* Download it here: http://ethanschoonover.com/solarized
-* I configured two seperate profiles.  One for light and one for dark.  I often switch between them based on day or night to combat glare. Tmux makes it very easy to switch without losing a beat.
-** CMD-O, select new profile.  Then run ```tmux attach``` and you are good to go.  Vim is also configured with a shortcut <F5> to switch between light and dark themes
-* Make sure you setup the profile to 'Report Terminal Type: xterm-256color' under "Profiles" / "Terminal".  This helps address vim color issues in terminal.
+This keeps one shared repo while allowing small per-machine differences.
+The default prompt stays simple and built-in unless you explicitly enable
+Starship on a machine.
 
-# Credits
+## Remote dev workflow
 
-A lot of this setup is summarized nicely and stolen from here: http://rhnh.net/2011/08/20/vim-and-tmux-on-osx
+Keep machine bootstrap details in a separate private repo or notes. This public
+repo should be applied only after the remote machine already exists and has the
+base packages installed.
 
+The intended remote user-space stack is:
 
+- `zsh`
+- `tmux`
+- `nvim`
+- `mise`
+- `direnv`
+- `zoxide`
+- `fzf`
 
+Inside a repo, run `dev-session` to attach or create a `tmux` session named
+after the current directory.
 
+## Notes
 
+- This repo does not assume Nix.
+- `mise` handles runtimes and project tools; keep global tools minimal.
+- Keep shell history separate per machine.
+- Keep bootstrap and deployment concerns (`cloud-init`, `Docker`, `Kamal`)
+  separate from user dotfiles.
+- `home/` is the only source of truth.
+- The rollout/consolidation plan lives in [`docs/migration-plan.md`](docs/migration-plan.md).
+- The per-machine rollout checklist lives in [`docs/first-run-checklist.md`](docs/first-run-checklist.md).

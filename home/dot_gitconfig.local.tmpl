@@ -1,0 +1,24 @@
+# Machine-specific Git overrides.
+#
+# role:
+#   personal = personal laptop/desktop
+#   work     = work-managed but shared development setup
+#   remote   = disposable remote dev host
+
+{{ if eq .chezmoi.os "darwin" -}}
+[credential]
+	helper = osxkeychain
+{{ else -}}
+[credential]
+	helper = cache --timeout=43200
+{{ end }}
+
+# Uncomment if you want SSH commit signing everywhere.
+#[gpg]
+#	format = ssh
+#
+#[user]
+#	signingkey = ~/.ssh/id_ed25519.pub
+#
+#[commit]
+#	gpgsign = true

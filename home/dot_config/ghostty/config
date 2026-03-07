@@ -1,0 +1,16 @@
+theme = light:GitHub Light
+theme = dark:GitHub Dark
+font-family = JetBrainsMono Nerd Font
+font-size = 14
+window-padding-x = 10
+window-padding-y = 8
+shell-integration = zsh
+macos-titlebar-style = tabs
+window-theme = ghostty
+cursor-style = block
+cursor-style-blink = false
+shell-integration-features = cursor,sudo,title
+confirm-close-surface = false
+copy-on-select = clipboard
+clipboard-read = allow
+clipboard-write = allow

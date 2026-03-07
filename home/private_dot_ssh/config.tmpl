@@ -1,0 +1,22 @@
+Host *
+  ServerAliveInterval 30
+  ServerAliveCountMax 3
+  HashKnownHosts yes
+  IgnoreUnknown UseKeychain
+{{ if eq .chezmoi.os "darwin" -}}
+  AddKeysToAgent yes
+  UseKeychain yes
+{{ end -}}
+
+# Example aliases for your fixed remote machines.
+# Fill in hostnames after bootstrap.
+#
+# Host remote-dev
+#   HostName 100.x.y.z
+#   User ubuntu
+#   IdentityFile ~/.ssh/id_ed25519
+#
+# Host remote-ops
+#   HostName 100.x.y.z
+#   User ubuntu
+#   IdentityFile ~/.ssh/id_ed25519
