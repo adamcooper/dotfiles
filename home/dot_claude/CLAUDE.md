@@ -1,6 +1,3 @@
-<!-- OMC:START -->
-<!-- OMC:END -->
-
 # Global Claude Instructions
 
 ## Code Style
