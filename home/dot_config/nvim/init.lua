@@ -19,6 +19,27 @@ require("lazy").setup({
       vim.keymap.set("n", "<leader>fk", builtin.keymaps,   { desc = "Keymaps" })
     end,
   },
+  {
+    "maxmx03/solarized.nvim",
+    lazy = false,
+    priority = 1000,
+    opts = {},
+    config = function(_, opts)
+      require("solarized").setup(opts)
+      vim.cmd.colorscheme("solarized")
+    end,
+  },
+  {
+    "f-person/auto-dark-mode.nvim",
+    opts = {
+      set_dark_mode = function()
+        vim.o.background = "dark"
+      end,
+      set_light_mode = function()
+        vim.o.background = "light"
+      end,
+    },
+  },
 })
 
 vim.opt.number = true
