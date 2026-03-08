@@ -1,0 +1,61 @@
+{
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "model": "sonnet",
+  "effortLevel": "medium",
+  "statusLine": {
+    "type": "command",
+    "command": "node {{ .chezmoi.homeDir }}/.claude/hud/omc-hud.mjs"
+  },
+  "enabledPlugins": {
+    "claude-dashboard@claude-dashboard": true,
+    "greptile@claude-plugins-official": true,
+    "github@claude-plugins-official": true,
+    "rails-ai@rails-ai-marketplace": true,
+    "superpowers@superpowers-dev": true,
+    "frontend-design@claude-plugins-official": true,
+    "code-review@claude-plugins-official": true{{ if ne .role "remote" }},
+    "xclaude-plugin@xclaude-plugin-marketplace": true,
+    "swift-lsp@claude-plugins-official": true{{ end }}
+  },
+  "allowedTools": [
+    "Bash", "Edit", "Write", "Read", "Glob", "Grep",
+    "mcp__context7__resolve-library-id",
+    "mcp__context7__query-docs"{{ if ne .role "remote" }},
+    "mcp__plugin_xclaude-plugin_xc-build__xcode_build",
+    "mcp__plugin_xclaude-plugin_xc-build__xcode_clean",
+    "mcp__plugin_xclaude-plugin_xc-build__xcode_list",
+    "mcp__plugin_xclaude-plugin_xc-all__xcode_build",
+    "mcp__plugin_xclaude-plugin_xc-all__xcode_clean",
+    "mcp__plugin_xclaude-plugin_xc-all__xcode_test",
+    "mcp__plugin_xclaude-plugin_xc-all__xcode_list",
+    "mcp__plugin_xclaude-plugin_xc-all__simulator_list",
+    "mcp__plugin_xclaude-plugin_xc-all__simulator_boot",
+    "mcp__plugin_xclaude-plugin_xc-all__simulator_screenshot",
+    "mcp__plugin_xclaude-plugin_xc-all__simulator_install_app",
+    "mcp__plugin_xclaude-plugin_xc-all__simulator_launch_app",
+    "mcp__plugin_xclaude-plugin_xc-all__idb_describe",
+    "mcp__plugin_xclaude-plugin_xc-all__idb_tap",
+    "mcp__plugin_xclaude-plugin_xc-all__idb_input",
+    "mcp__plugin_xclaude-plugin_xc-all__idb_find_element",
+    "mcp__plugin_xclaude-plugin_xc-all__idb_check_quality",
+    "mcp__plugin_xclaude-plugin_xc-testing__xcode_test",
+    "mcp__plugin_xclaude-plugin_xc-setup__simulator_list",
+    "mcp__plugin_xclaude-plugin_xc-setup__simulator_boot",
+    "mcp__plugin_xclaude-plugin_xc-meta__xcode_list",
+    "mcp__plugin_xclaude-plugin_xc-meta__simulator_health_check"{{ end }}
+  ],
+  "mcpServers": {
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp", "--headless"]
+    }{{ if eq .role "work" }},
+    {{ template "work-mcp-servers" . }}{{ end }}
+  },
+  "skipDangerousModePermissionPrompt": true
+}
