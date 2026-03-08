@@ -134,6 +134,12 @@ elif [[ -o interactive && -z "${DOTFILES_WARNED_MISSING_ATUIN:-}" ]]; then
 fi
 {{ end -}}
 
+# Dotfiles management
+alias dotfiles='cd ~/.dotfiles'
+alias dotfiles-sync='cd ~/.dotfiles && git pull && chezmoi apply && cd -'
+alias dotfiles-diff='chezmoi diff'
+dotfiles-commit() { cd ~/.dotfiles && git add -p && git commit -m "$1" && cd -; }
+
 if [ -r "$XDG_CONFIG_HOME/zsh/aliases.zsh" ]; then
   source "$XDG_CONFIG_HOME/zsh/aliases.zsh"
 fi
