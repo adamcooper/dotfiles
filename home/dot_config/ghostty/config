@@ -1,4 +1,4 @@
-theme = light:GitHub Light Default,dark:GitHub Dark
+theme = light:Builtin Solarized Light,dark:Builtin Solarized Dark
 font-family = JetBrainsMono Nerd Font
 font-size = 14
 window-padding-x = 10
