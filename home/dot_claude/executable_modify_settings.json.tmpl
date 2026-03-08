@@ -1,10 +1,16 @@
-{
-  "env": {
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
-  },
-  "model": "sonnet",
-  "effortLevel": "medium",
-  "enabledPlugins": {
+#!/bin/sh
+# chezmoi modify script — patches ~/.claude/settings.json in place.
+# Merges only the keys we want to manage centrally; everything else
+# (statusLine, work MCP servers, Claude Code's own writes) is preserved.
+
+jq \
+  --argjson base '{
+    "model": "sonnet",
+    "effortLevel": "medium",
+    "skipDangerousModePermissionPrompt": true,
+    "env": {"CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"}
+  }' \
+  --argjson plugins '{
     "claude-dashboard@claude-dashboard": true,
     "greptile@claude-plugins-official": true,
     "github@claude-plugins-official": true,
@@ -14,8 +20,8 @@
     "code-review@claude-plugins-official": true{{ if ne .role "remote" }},
     "xclaude-plugin@xclaude-plugin-marketplace": true,
     "swift-lsp@claude-plugins-official": true{{ end }}
-  },
-  "allowedTools": [
+  }' \
+  --argjson tools '[
     "Bash", "Edit", "Write", "Read", "Glob", "Grep",
     "mcp__context7__resolve-library-id",
     "mcp__context7__query-docs"{{ if ne .role "remote" }},
@@ -41,17 +47,12 @@
     "mcp__plugin_xclaude-plugin_xc-setup__simulator_boot",
     "mcp__plugin_xclaude-plugin_xc-meta__xcode_list",
     "mcp__plugin_xclaude-plugin_xc-meta__simulator_health_check"{{ end }}
-  ],
-  "mcpServers": {
-    "context7": {
-      "command": "npx",
-      "args": ["-y", "@upstash/context7-mcp"]
-    },
-    "playwright": {
-      "command": "npx",
-      "args": ["@playwright/mcp", "--headless"]
-    }{{ if eq .role "work" }},
-    {{ template "work-mcp-servers" . }}{{ end }}
-  },
-  "skipDangerousModePermissionPrompt": true
-}
+  ]' \
+  --argjson mcpservers '{
+    "context7": {"command": "npx", "args": ["-y", "@upstash/context7-mcp"]},
+    "playwright": {"command": "npx", "args": ["@playwright/mcp", "--headless"]}
+  }' \
+  '. * $base
+  | .enabledPlugins = ((.enabledPlugins // {}) * $plugins)
+  | .allowedTools = ((.allowedTools // []) + $tools | unique)
+  | .mcpServers = ((.mcpServers // {}) * $mcpservers)'
