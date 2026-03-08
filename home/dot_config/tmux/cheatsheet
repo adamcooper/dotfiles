@@ -1,0 +1,35 @@
+ tmux cheatsheet                          prefix: C-a
+─────────────────────────────────────────────────────
+ Sessions
+   prefix+$        rename session
+   prefix+s        list/switch sessions
+   prefix+d        detach
+
+ Windows
+   prefix+c        new window (current path)
+   prefix+,        rename window
+   prefix+w        list/switch windows
+   prefix+&        kill window
+   M-C-h / M-C-l   previous / next window
+   M-C-j / M-C-k   swap window left / right
+
+ Panes
+   prefix+|        split horizontal (current path)
+   prefix+-        split vertical (current path)
+   prefix+h/j/k/l  select pane
+   prefix+H/J/K/L  resize pane (repeatable)
+   prefix+z        zoom/unzoom pane
+   prefix+x        kill pane
+
+ Copy mode (vi)
+   prefix+Enter    enter copy mode
+   v               begin selection
+   y               copy selection
+   q               quit copy mode
+
+ Misc
+   prefix+r        reload config
+   prefix+:        command prompt
+   prefix+?        list all bindings
+─────────────────────────────────────────────────────
+ press any key to close
