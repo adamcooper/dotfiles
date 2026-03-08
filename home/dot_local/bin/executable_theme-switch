@@ -1,0 +1,6 @@
+#!/bin/sh
+# ~/.local/bin/theme-switch
+# Called by dark-mode-notify when macOS appearance changes.
+# Re-sources the tmux theme in all running sessions.
+THEME=$(~/.local/bin/theme-current)
+tmux source-file ~/.config/tmux/themes/solarized-${THEME}.conf 2>/dev/null || true
