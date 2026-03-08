@@ -48,6 +48,10 @@ Then edit `~/.config/chezmoi/chezmoi.toml` and set:
 - `role = "personal"` on your personal machine
 - `role = "work"` on your work machine
 
+The macOS bootstrap also installs the Ghostty font used by the default config
+and pre-installs `starship` and `atuin` so those feature flags work if you
+enable them later.
+
 ### Linux / remote dev host
 
 ```sh
@@ -56,6 +60,8 @@ chezmoi init --apply https://github.com/adamcooper/dotfiles.git
 ```
 
 Then set `role = "remote"` in `~/.config/chezmoi/chezmoi.toml`.
+If you enable `use_starship` or `use_atuin` on Linux, install the matching
+binary first.
 
 ## Machine roles
 
@@ -70,7 +76,8 @@ machine-local data:
 
 This keeps one shared repo while allowing small per-machine differences.
 The default prompt stays simple and built-in unless you explicitly enable
-Starship on a machine.
+Starship on a machine. If a flag is enabled without the corresponding tool
+installed, the shell falls back cleanly and prints a warning.
 
 ## Remote dev workflow
 

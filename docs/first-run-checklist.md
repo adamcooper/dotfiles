@@ -35,6 +35,9 @@ Optional:
 - set `use_starship = true` if you want Starship
 - set `use_atuin = true` if you want Atuin on that machine
 
+On macOS, `./scripts/bootstrap-macos.sh` installs both tools. On Linux, install
+the corresponding binary before enabling either flag.
+
 Re-apply after changes:
 
 ```sh
@@ -47,9 +50,11 @@ Check:
 
 - `echo $SHELL`
 - `zsh --version`
-- `which mise direnv zoxide fzf rg fd nvim tmux`
+- `command -v chezmoi mise direnv zoxide fzf rg nvim tmux`
+- `command -v fd || command -v fdfind`
 - `echo $EDITOR`
 - `echo $XDG_CONFIG_HOME`
+- if enabled, `command -v starship` and `command -v atuin`
 
 Confirm:
 
@@ -57,12 +62,13 @@ Confirm:
 - `ls` and `ll` behave as expected
 - `z repo-name` works after you have visited a few directories
 - `ctrl-r` history search still behaves the way you expect
+- `ctrl-t` file search works inside a repo
 
 ## 4. Validate editor and terminal
 
 Check:
 
-- Ghostty starts cleanly
+- Ghostty starts cleanly and uses the expected font
 - `nvim` opens without errors
 - `tmux` starts without errors
 - in a repo, `dev-session` attaches or creates a session

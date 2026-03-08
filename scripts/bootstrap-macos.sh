@@ -6,8 +6,9 @@ if ! command -v brew >/dev/null 2>&1; then
   exit 1
 fi
 
-brew install chezmoi mise direnv zoxide fzf ripgrep fd eza bat neovim tmux
-brew install --cask ghostty
+brew install chezmoi mise direnv zoxide fzf ripgrep fd eza bat neovim tmux starship atuin
+brew tap homebrew/cask-fonts
+brew install --cask ghostty font-jetbrains-mono-nerd-font
 
 echo
 echo "Next:"

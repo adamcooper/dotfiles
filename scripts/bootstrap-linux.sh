@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
+export PATH="$HOME/.local/bin:$PATH"
+
 if command -v apt-get >/dev/null 2>&1; then
   sudo apt-get update
   sudo apt-get install -y \
@@ -37,4 +39,5 @@ echo
 echo "Next:"
 echo "  1. chezmoi init --apply https://github.com/adamcooper/dotfiles.git"
 echo "  2. Edit ~/.config/chezmoi/chezmoi.toml and set role=remote"
-echo "  3. Start tmux and run dev-session inside a repo"
+echo "  3. If you enable use_starship/use_atuin, install those tools first"
+echo "  4. Start tmux and run dev-session inside a repo"

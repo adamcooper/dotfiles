@@ -1,0 +1,12 @@
+#!/bin/sh
+# Outputs "dark" or "light" based on system preference.
+# macOS: reads AppleInterfaceStyle. Linux: defaults to dark.
+if [ "$(uname)" = "Darwin" ]; then
+  if defaults read -g AppleInterfaceStyle 2>/dev/null | grep -q Dark; then
+    echo dark
+  else
+    echo light
+  fi
+else
+  echo dark
+fi

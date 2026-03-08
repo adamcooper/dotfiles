@@ -4,6 +4,12 @@ SAVEHIST=50000
 
 mkdir -p "${XDG_CACHE_HOME:-$HOME/.cache}/zsh" "${XDG_STATE_HOME:-$HOME/.local/state}/zsh"
 
+set_default_prompt() {
+  autoload -Uz colors && colors
+  setopt PROMPT_SUBST
+  PROMPT='%F{cyan}%n@%m%f %F{yellow}%1~%f %(?.%F{green}.%F{red})%#%f '
+}
+
 setopt AUTO_CD
 setopt HIST_IGNORE_ALL_DUPS
 setopt HIST_IGNORE_SPACE
@@ -31,7 +37,18 @@ export EDITOR="nvim"
 export VISUAL="$EDITOR"
 export PAGER="less -FRX"
 export BAT_THEME="ansi"
-export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+
+if command -v fd >/dev/null 2>&1; then
+  export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+  export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+elif command -v fdfind >/dev/null 2>&1; then
+  export FZF_DEFAULT_COMMAND='fdfind --type f --hidden --follow --exclude .git'
+  export FZF_ALT_C_COMMAND='fdfind --type d --hidden --follow --exclude .git'
+else
+  export FZF_DEFAULT_COMMAND='find . -type f -not -path "*/.git/*"'
+  export FZF_ALT_C_COMMAND='find . -type d -not -path "*/.git/*"'
+fi
+
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 
 path=(
@@ -43,6 +60,8 @@ path=(
 if command -v eza >/dev/null 2>&1; then
   alias ls='eza'
   alias ll='eza -lag --git'
+else
+  alias ll='ls -lah'
 fi
 
 if command -v bat >/dev/null 2>&1; then
@@ -66,21 +85,52 @@ fi
 
 if [ -r "$HOME/.fzf.zsh" ]; then
   source "$HOME/.fzf.zsh"
+else
+  for fzf_completion in \
+    "/opt/homebrew/opt/fzf/shell/completion.zsh" \
+    "/usr/local/opt/fzf/shell/completion.zsh" \
+    "/usr/share/fzf/completion.zsh" \
+    "/usr/share/doc/fzf/examples/completion.zsh"
+  do
+    if [ -r "$fzf_completion" ]; then
+      source "$fzf_completion"
+      break
+    fi
+  done
+
+  for fzf_key_bindings in \
+    "/opt/homebrew/opt/fzf/shell/key-bindings.zsh" \
+    "/usr/local/opt/fzf/shell/key-bindings.zsh" \
+    "/usr/share/fzf/key-bindings.zsh" \
+    "/usr/share/doc/fzf/examples/key-bindings.zsh"
+  do
+    if [ -r "$fzf_key_bindings" ]; then
+      source "$fzf_key_bindings"
+      break
+    fi
+  done
 fi
 
 {{ if .use_starship -}}
 if command -v starship >/dev/null 2>&1; then
   eval "$(starship init zsh)"
+else
+  set_default_prompt
+  if [[ -o interactive && -z "${DOTFILES_WARNED_MISSING_STARSHIP:-}" ]]; then
+    export DOTFILES_WARNED_MISSING_STARSHIP=1
+    print -u2 "starship is enabled in chezmoi data but not installed; using the fallback prompt."
+  fi
 fi
 {{ else -}}
-autoload -Uz colors && colors
-setopt PROMPT_SUBST
-PROMPT='%F{cyan}%n@%m%f %F{yellow}%1~%f %(?.%F{green}.%F{red})%#%f '
+set_default_prompt
 {{ end -}}
 
 {{ if .use_atuin -}}
 if command -v atuin >/dev/null 2>&1; then
   eval "$(atuin init zsh --disable-up-arrow)"
+elif [[ -o interactive && -z "${DOTFILES_WARNED_MISSING_ATUIN:-}" ]]; then
+  export DOTFILES_WARNED_MISSING_ATUIN=1
+  print -u2 "atuin is enabled in chezmoi data but not installed; using the default history search."
 fi
 {{ end -}}
 
