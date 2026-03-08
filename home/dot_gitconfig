@@ -29,7 +29,6 @@
   pager = true
 
 [core]
-  editor = {{ if or (eq .role "personal") (eq .role "work") }}code --wait{{ else }}nvim{{ end }}
   pager = less -FRX
   excludesfile = ~/.gitignore
 

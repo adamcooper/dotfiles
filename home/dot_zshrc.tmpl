@@ -19,7 +19,15 @@ compinit -d "${XDG_CACHE_HOME:-$HOME/.cache}/zsh/zcompdump"
 
 bindkey -e
 
-export EDITOR="{{ if or (eq .role "personal") (eq .role "work") }}code --wait{{ else }}nvim{{ end }}"
+{{ if or (eq .role "personal") (eq .role "work") -}}
+if command -v code >/dev/null 2>&1; then
+  export EDITOR="code --wait"
+else
+  export EDITOR="nvim"
+fi
+{{ else -}}
+export EDITOR="nvim"
+{{ end -}}
 export VISUAL="$EDITOR"
 export PAGER="less -FRX"
 export BAT_THEME="ansi"
