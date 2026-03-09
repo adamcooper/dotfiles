@@ -54,8 +54,19 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 path=(
   "$HOME/.local/bin"
   "$HOME/bin"
+  "$HOME/.bun/bin"
   $path
 )
+
+if [ -s "$HOME/.bun/_bun" ]; then
+  source "$HOME/.bun/_bun"
+fi
+{{ if eq .role "work" -}}
+
+if [ -d "$HOME/.lmstudio/bin" ]; then
+  path=("$HOME/.lmstudio/bin" $path)
+fi
+{{ end -}}
 
 if command -v eza >/dev/null 2>&1; then
   alias ls='eza'

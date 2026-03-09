@@ -1,0 +1,20 @@
+# Core tools
+brew "chezmoi"
+brew "mise"
+brew "direnv"
+brew "zoxide"
+brew "fzf"
+brew "ripgrep"
+brew "fd"
+brew "eza"
+brew "bat"
+brew "neovim"
+brew "tmux"
+brew "starship"
+brew "atuin"
+brew "bun"
+brew "node"
+
+# GUI apps
+cask "ghostty"
+cask "font-jetbrains-mono-nerd-font"

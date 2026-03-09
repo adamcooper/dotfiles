@@ -6,11 +6,10 @@ if ! command -v brew >/dev/null 2>&1; then
   exit 1
 fi
 
-brew install chezmoi mise direnv zoxide fzf ripgrep fd eza bat neovim tmux starship atuin
-# dark-mode-notify: not in standard Homebrew — install manually from GitHub releases
-# https://github.com/nicholasburns/dark-mode-notify or build from source
-# brew install dark-mode-notify  # update if a tap becomes available
-brew install --cask ghostty font-jetbrains-mono-nerd-font
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+REPO_DIR="$(dirname "$SCRIPT_DIR")"
+
+brew bundle --file="$REPO_DIR/Brewfile" --no-lock
 
 echo
 echo "Next:"
