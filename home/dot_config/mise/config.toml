@@ -3,4 +3,5 @@ idiomatic_version_file_enable_tools = ["node", "python", "ruby"]
 status = { missing_tools = "if_other_versions_installed" }
 
 [tools]
+ruby = "3.4.8"
 # Add long-lived global tools here only when you want them on every machine.
