@@ -9,7 +9,7 @@ fi
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 REPO_DIR="$(dirname "$SCRIPT_DIR")"
 
-brew bundle --file="$REPO_DIR/Brewfile" --no-lock
+brew bundle --file="$REPO_DIR/Brewfile"
 
 echo
 echo "Next:"

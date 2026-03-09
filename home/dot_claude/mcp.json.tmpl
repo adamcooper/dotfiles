@@ -7,7 +7,6 @@
     "playwright": {
       "command": "npx",
       "args": ["@playwright/mcp", "--headless"]
-    }{{ if eq .role "work" }},
-    {{ template "work-mcp-servers" . }}{{ end }}
+    }
   }
 }

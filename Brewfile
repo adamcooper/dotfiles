@@ -1,3 +1,6 @@
+# Taps
+tap "oven-sh/bun"
+
 # Core tools
 brew "chezmoi"
 brew "mise"
@@ -12,7 +15,7 @@ brew "neovim"
 brew "tmux"
 brew "starship"
 brew "atuin"
-brew "bun"
+brew "oven-sh/bun/bun"
 brew "node"
 
 # dark-mode-notify: not in homebrew core — install manually from GitHub releases
