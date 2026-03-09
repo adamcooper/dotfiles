@@ -18,6 +18,13 @@ brew "atuin"
 brew "oven-sh/bun/bun"
 brew "node"
 
+# Build dependencies for compiling Ruby/Python via mise (ruby-build, python-build)
+brew "openssl"
+brew "libyaml"
+brew "libffi"
+brew "readline"
+brew "zlib"
+
 # dark-mode-notify: not in homebrew core — install manually from GitHub releases
 # https://github.com/nicholasburns/dark-mode-notify
 
