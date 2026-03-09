@@ -54,10 +54,12 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 path=(
   "$HOME/.local/bin"
   "$HOME/bin"
-  "$HOME/.bun/bin"
   $path
 )
 
+if [ -d "$HOME/.bun/bin" ]; then
+  path=("$HOME/.bun/bin" $path)
+fi
 if [ -s "$HOME/.bun/_bun" ]; then
   source "$HOME/.bun/_bun"
 fi

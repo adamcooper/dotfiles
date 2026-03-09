@@ -15,6 +15,9 @@ brew "atuin"
 brew "bun"
 brew "node"
 
+# dark-mode-notify: not in homebrew core — install manually from GitHub releases
+# https://github.com/nicholasburns/dark-mode-notify
+
 # GUI apps
 cask "ghostty"
 cask "font-jetbrains-mono-nerd-font"
