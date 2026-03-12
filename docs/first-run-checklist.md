@@ -73,7 +73,19 @@ Check:
 - `tmux` starts without errors
 - in a repo, `dev-session` attaches or creates a session
 
-## 5. Machine-specific follow-up
+## 5. Per-project direnv setup
+
+For repos that use mise (e.g., Zipline), create an `.envrc` in the project root:
+
+```sh
+echo 'use mise' > ~/path/to/project/.envrc
+direnv allow ~/path/to/project
+```
+
+The `use_mise` function is provisioned globally by chezmoi at
+`~/.config/direnv/direnvrc`, so no additional setup is needed.
+
+## 6. Machine-specific follow-up
 
 ### Personal machine
 
@@ -97,7 +109,7 @@ Put work-only settings in:
 
 Promote only stable shared defaults back into this repo.
 
-## 6. Consolidation pass
+## 7. Consolidation pass
 
 After both Macs are running well:
 

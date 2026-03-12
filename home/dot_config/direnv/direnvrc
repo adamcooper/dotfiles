@@ -1,0 +1,5 @@
+# Registers use_mise so .envrc files can say `use mise` to delegate
+# PATH and environment setup to mise. Equivalent to `mise direnv activate`.
+use_mise() {
+  direnv_load mise direnv exec
+}
