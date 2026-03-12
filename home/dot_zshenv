@@ -3,3 +3,15 @@ export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
 export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
+
+# Homebrew keg-only packages: expose to pkg-config so native gem extensions
+# (nokogiri, psych, openssl, hiredis) can find headers and libraries.
+if [ -d "/opt/homebrew/opt" ]; then
+  _brew_pkgconfig=""
+  for _pkg in openssl@3 libxml2 libxslt libyaml libffi readline zlib; do
+    _pc="/opt/homebrew/opt/${_pkg}/lib/pkgconfig"
+    [ -d "$_pc" ] && _brew_pkgconfig="${_brew_pkgconfig:+${_brew_pkgconfig}:}${_pc}"
+  done
+  export PKG_CONFIG_PATH="${_brew_pkgconfig}${PKG_CONFIG_PATH:+:${PKG_CONFIG_PATH}}"
+  unset _brew_pkgconfig _pc _pkg
+fi

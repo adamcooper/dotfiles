@@ -1,4 +1,4 @@
-theme = light:Builtin Solarized Light,dark:Builtin Solarized Dark
+theme = light:Iterm2 Solarized Light,dark:Iterm2 Solarized Dark
 font-family = JetBrainsMono Nerd Font
 font-size = 14
 window-padding-x = 10
