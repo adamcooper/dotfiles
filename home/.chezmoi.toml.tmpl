@@ -4,6 +4,6 @@ sourceDir = "{{ .chezmoi.homeDir }}/.dotfiles"
 
 [data]
     machine = "{{ .chezmoi.hostname }}"
-    role = "{{ if eq .chezmoi.os "darwin" }}personal{{ else }}remote{{ end }}"
+    role = "{{ promptStringOnce . "role" "Machine role (personal/work/remote)" }}"
     use_starship = true
     use_atuin = true

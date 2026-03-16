@@ -6,5 +6,10 @@ status = { missing_tools = "if_other_versions_installed" }
 compile = false
 
 [tools]
+{{ if eq .role "work" -}}
+ruby = "3.3.10"
+node = "24.14.10"
+{{ else -}}
 ruby = "3.4.8"
+{{ end -}}
 # Add long-lived global tools here only when you want them on every machine.
