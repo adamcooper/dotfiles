@@ -4,6 +4,10 @@ export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
 export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
 
+if command -v mise >/dev/null 2>&1; then
+  eval "$(mise activate zsh --shims)"
+fi
+
 # Homebrew keg-only packages: expose to pkg-config so native gem extensions
 # (nokogiri, psych, openssl, hiredis) can find headers and libraries.
 if [ -d "/opt/homebrew/opt" ]; then
