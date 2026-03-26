@@ -4,7 +4,7 @@ export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
 export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
 
-if command -v mise >/dev/null 2>&1; then
+if [[ ! -o login ]] && command -v mise >/dev/null 2>&1; then
   eval "$(mise activate zsh --shims)"
 fi
 
