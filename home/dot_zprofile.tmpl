@@ -4,8 +4,5 @@ if [ -x /opt/homebrew/bin/brew ]; then
 elif [ -x /usr/local/bin/brew ]; then
   eval "$(/usr/local/bin/brew shellenv)"
 fi
-if command -v mise >/dev/null 2>&1; then
-  eval "$(mise activate zsh --shims)"
-fi
 export PATH="$HOME/.local/share/mise/shims:$PATH"
 {{ end -}}

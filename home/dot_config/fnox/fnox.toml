@@ -1,0 +1,6 @@
+[providers]
+keychain = { type = "keychain", service = "fnox" }
+
+[secrets]
+DD_API_KEY= { provider = "keychain", value = "DD_API_KEY" }
+DD_APPLICATION_KEY= { provider = "keychain", value = "DD_APPLICATION_KEY" }
